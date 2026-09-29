@@ -1,0 +1,37 @@
+class ChatMessage {
+  final String id;
+  final String text;
+  final bool isUser;
+  final DateTime timestamp;
+  final String? toolUsed;
+  final String? actionStatus;
+
+  ChatMessage({
+    required this.id,
+    required this.text,
+    required this.isUser,
+    required this.timestamp,
+    this.toolUsed,
+    this.actionStatus,
+  });
+
+  factory ChatMessage.user(String text) {
+    return ChatMessage(
+      id: DateTime.now().millisecondsSinceEpoch.toString(),
+      text: text,
+      isUser: true,
+      timestamp: DateTime.now(),
+    );
+  }
+
+  factory ChatMessage.jarvis(String text, {String? toolUsed, String? actionStatus}) {
+    return ChatMessage(
+      id: DateTime.now().millisecondsSinceEpoch.toString(),
+      text: text,
+      isUser: false,
+      timestamp: DateTime.now(),
+      toolUsed: toolUsed,
+      actionStatus: actionStatus,
+    );
+  }
+}
